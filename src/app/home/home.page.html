@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-avatar id="avatar">
+    <img src="../../assets/img/nutria(1).png">
+  </ion-avatar>
+  <strong><h1 id="nombre">Mi primera app</h1></strong>
+  <ion-item>
+    <ion-label colorposition="floating">Digite nombre</ion-label>
+    <ion-input [(ngModel)]="myNombre" id = "myLabel"></ion-input>
+
+  </ion-item>
+  <label>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo nesciunt quidem saepe ut, repudiandae eligendi commodi recusandae magnam ipsa tempora dolor nostrum delectus soluta maiores ducimus reprehenderit accusamus neque odio.</label>
+  <ion-button expand="full" (click)="enviar()" >Enviar</ion-button>
+</ion-content>
+ 

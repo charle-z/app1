@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>datos</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120"> <!-- pullFactor="0.8" pullMin="60" pullMax="120" -->
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+    <ion-fab-button (click)="create()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <h1>Bienvenido</h1>
+  <h3>{{nombre}}</h3>
+  <ion-card (click)="elegido(i)" *ngFor="let myDatos of datos; let i = index">
+    <ion-card-content>
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>{{ myDatos.datNombre}} - {{myDatos.datDeporte}}</ion-label>
+            <ion-icon color="primary" (click)="updateDatos(myDatos)" name="pencil-outline"></ion-icon>
+            <ion-icon color="danger" (click)="removeDatos(myDatos.datId)" name="trash-outline"></ion-icon>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <div *ngIf="myDatos.datEdad > 18; else menor">
+              <img (click)="interface(i)" src="{{myDatos.datImagen}}" />
+            </div>
+          </div>
+          <ng-template #menor>
+            <div class="ion-padding" slot="content">
+              <h1>Es menor de edad</h1>
+              <img (click)="interface(i)" src="{{myDatos.datImagen}}" />
+            </div>
+          </ng-template>
+        </ion-accordion>
+      </ion-accordion-group>
+      <ion-icon *ngIf="!mostrarElegido[i]; else noMostrar;" size="large" name="caret-down-circle-outline"></ion-icon>
+      <ng-template #noMostrar>
+        <ion-icon size="large" name="caret-up-circle-outline"></ion-icon>
+      </ng-template>
+      {{myDatos.datNombre}} {{myDatos.datApellido}}
+      <div *ngIf="mostrarElegido[i]">
+        <p>Edad: {{myDatos.datEdad}}</p>
+
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
